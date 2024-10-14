@@ -3,7 +3,7 @@ import 'package:app/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:app/view/login_view.dart'; // Import the LoginView
+import 'package:app/view/login_view.dart'; 
 
 class SignUpViewModel extends ChangeNotifier {
   bool isLoading = false;
@@ -43,7 +43,7 @@ class SignUpViewModel extends ChangeNotifier {
           icon: signUpModel.error ? Icons.error : Icons.check_circle,
         );
 
-        // Navigate to LoginView if registration is successful
+     
         if (!signUpModel.error) {
           Navigator.pushReplacement(
             context,

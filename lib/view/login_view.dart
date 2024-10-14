@@ -99,7 +99,7 @@ class LoginView extends StatelessWidget {
             SizedBox(height: responsive.hp(3)),
             TextButton(
               onPressed: () {
-                // Navigate to the Register screen
+             
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => SignUpView()));
               },

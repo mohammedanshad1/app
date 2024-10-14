@@ -47,7 +47,7 @@ class LoginViewModel with ChangeNotifier {
             icon: Icons.check,
           );
 
-          // Navigate to HomeScreenView and pass email or userMobile if needed
+      
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
