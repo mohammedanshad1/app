@@ -139,19 +139,19 @@ class SignUpView extends StatelessWidget {
                   height: responsive.hp(6),
                   width: double.infinity,
                 ),
-                SizedBox(height: responsive.hp(3)),
-                if (signUpViewModel.message.isNotEmpty)
-                  Center(
-                    child: Text(
-                      signUpViewModel.message,
-                      style: AppTypography.regular.copyWith(
-                        fontSize: responsive.sp(14),
-                        color: signUpViewModel.message.contains("success")
-                            ? Colors.green
-                            : Colors.red,
-                      ),
-                    ),
-                  ),
+                // SizedBox(height: responsive.hp(3)),
+                // if (signUpViewModel.message.isNotEmpty)
+                //   Center(
+                //     child: Text(
+                //       signUpViewModel.message,
+                //       style: AppTypography.regular.copyWith(
+                //         fontSize: responsive.sp(14),
+                //         color: signUpViewModel.message.contains("success")
+                //             ? Colors.green
+                //             : Colors.red,
+                //       ),
+                //     ),
+                //   ),
               ],
             ),
           ),
