@@ -1,5 +1,6 @@
 import 'package:app/constants/apptypography.dart';
 import 'package:app/utils/responsive.dart';
+import 'package:app/view/signup_view.dart';
 import 'package:app/viewmodel/login_viewmodel.dart';
 import 'package:app/widgets/custom_button.dart';
 import 'package:app/widgets/custom_snackbar.dart';
@@ -82,6 +83,20 @@ class LoginView extends StatelessWidget {
               },
             ),
             SizedBox(height: responsive.hp(3)),
+            TextButton(
+              onPressed: () {
+                // Navigate to the Register screen
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => SignUpView()));
+              },
+              child: Text(
+                "Don't have an account? Register",
+                style: AppTypography.regular.copyWith(
+                  fontSize: responsive.sp(14),
+                  color: Colors.blue,
+                ),
+              ),
+            ),
           ],
         ),
       ),

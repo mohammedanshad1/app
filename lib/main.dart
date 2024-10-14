@@ -1,3 +1,4 @@
+import 'package:app/view/login_view.dart';
 import 'package:app/view/signup_view.dart';
 import 'package:app/viewmodel/login_viewmodel.dart';
 import 'package:app/viewmodel/signup_viewmodel.dart';
@@ -9,7 +10,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SignUpViewModel()),
-          ChangeNotifierProvider(create: (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => LoginViewModel()),
       ],
       child: MyApp(),
     ),
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpView(),
+      home: LoginView(),
     );
   }
 }
