@@ -1,6 +1,7 @@
 import 'package:app/constants/apptypography.dart';
 import 'package:app/utils/responsive.dart';
 import 'package:app/viewmodel/login_viewmodel.dart';
+import 'package:app/widgets/custom_button.dart';
 import 'package:app/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,37 +15,57 @@ class LoginView extends StatelessWidget {
     final responsive = context.responsive;
 
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: responsive.wp(10)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Login', style: AppTypography.bold.copyWith(fontSize: responsive.sp(24))),
+            SizedBox(height: responsive.hp(10)),
+            Text(
+              'Login',
+              style: AppTypography.bold.copyWith(fontSize: responsive.sp(24)),
+            ),
             SizedBox(height: responsive.hp(5)),
             TextField(
               controller: _mobileController,
-              decoration: InputDecoration(labelText: 'Mobile Number'),
+              decoration: InputDecoration(
+                labelText: 'Mobile Number',
+                prefixIcon: Icon(Icons.phone),
+                labelStyle: AppTypography.regular.copyWith(
+                  fontSize: responsive.sp(14),
+                ),
+              ),
               keyboardType: TextInputType.phone,
               style: AppTypography.regular,
             ),
             SizedBox(height: responsive.hp(2)),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(
+                labelText: 'Password',
+                prefixIcon: Icon(Icons.lock),
+                labelStyle: AppTypography.regular.copyWith(
+                  fontSize: responsive.sp(14),
+                ),
+              ),
               obscureText: true,
               style: AppTypography.regular,
             ),
             SizedBox(height: responsive.hp(4)),
             Consumer<LoginViewModel>(
               builder: (context, loginViewModel, child) {
-                return ElevatedButton(
-                  onPressed: loginViewModel.isLoading
-                      ? null
+                return CustomButton(
+                  buttonName: "Login",
+                  onTap: loginViewModel.isLoading
+                      ? () {}
                       : () {
                           String userMobile = _mobileController.text.trim();
                           String userPassword = _passwordController.text.trim();
-                          if (userMobile.isNotEmpty && userPassword.isNotEmpty) {
-                            loginViewModel.login(context, userMobile, userPassword);
+                          if (userMobile.isNotEmpty &&
+                              userPassword.isNotEmpty) {
+                            loginViewModel.login(
+                                context, userMobile, userPassword);
                           } else {
                             CustomSnackBar.show(
                               context,
@@ -54,12 +75,13 @@ class LoginView extends StatelessWidget {
                             );
                           }
                         },
-                  child: loginViewModel.isLoading
-                      ? CircularProgressIndicator(color: Colors.white)
-                      : Text('Login', style: AppTypography.medium.copyWith(fontSize: responsive.sp(16))),
+                  buttonColor: Colors.blue,
+                  height: responsive.hp(6),
+                  width: double.infinity,
                 );
               },
             ),
+            SizedBox(height: responsive.hp(3)),
           ],
         ),
       ),
