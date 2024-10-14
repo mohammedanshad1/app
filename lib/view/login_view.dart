@@ -36,6 +36,13 @@ class LoginView extends StatelessWidget {
                 labelStyle: AppTypography.regular.copyWith(
                   fontSize: responsive.sp(14),
                 ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
               keyboardType: TextInputType.phone,
               style: AppTypography.regular,
@@ -48,6 +55,13 @@ class LoginView extends StatelessWidget {
                 prefixIcon: Icon(Icons.lock),
                 labelStyle: AppTypography.regular.copyWith(
                   fontSize: responsive.sp(14),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
               obscureText: true,
