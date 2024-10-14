@@ -1,9 +1,9 @@
 import 'package:app/constants/apptypography.dart';
 import 'package:app/utils/responsive.dart';
+import 'package:app/view/login_view.dart';
 import 'package:app/viewmodel/signup_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class SignUpView extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -31,7 +31,8 @@ class SignUpView extends StatelessWidget {
               controller: nameController,
               decoration: InputDecoration(
                 labelText: 'Name',
-                labelStyle: AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
+                labelStyle:
+                    AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
               ),
             ),
             SizedBox(height: responsive.hp(2)),
@@ -39,7 +40,8 @@ class SignUpView extends StatelessWidget {
               controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
-                labelStyle: AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
+                labelStyle:
+                    AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -48,7 +50,8 @@ class SignUpView extends StatelessWidget {
               controller: mobileController,
               decoration: InputDecoration(
                 labelText: 'Mobile',
-                labelStyle: AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
+                labelStyle:
+                    AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
               ),
               keyboardType: TextInputType.phone,
             ),
@@ -57,7 +60,8 @@ class SignUpView extends StatelessWidget {
               controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
-                labelStyle: AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
+                labelStyle:
+                    AppTypography.regular.copyWith(fontSize: responsive.sp(14)),
               ),
               obscureText: true,
             ),
@@ -67,6 +71,7 @@ class SignUpView extends StatelessWidget {
                 : ElevatedButton(
                     onPressed: () {
                       signUpViewModel.registerUser(
+                        context, // Pass context here
                         nameController.text,
                         emailController.text,
                         mobileController.text,
@@ -75,18 +80,29 @@ class SignUpView extends StatelessWidget {
                     },
                     child: Text(
                       "Register",
-                      style: AppTypography.medium.copyWith(fontSize: responsive.sp(16)),
+                      style: AppTypography.medium
+                          .copyWith(fontSize: responsive.sp(16)),
                     ),
                   ),
-            SizedBox(height: responsive.hp(3)),
-            if (signUpViewModel.message.isNotEmpty)
-              Text(
-                signUpViewModel.message,
-                style: AppTypography.regular.copyWith(
-                  fontSize: responsive.sp(14),
-                  color: signUpViewModel.message.contains("success") ? Colors.green : Colors.red,
-                ),
-              ),
+            SizedBox(height: responsive.hp(2)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginView()));
+              },
+              child: Text("Login"),
+            ),
+            // SizedBox(height: responsive.hp(3)),
+            // if (signUpViewModel.message.isNotEmpty)
+            //   Text(
+            //     signUpViewModel.message,
+            //     style: AppTypography.regular.copyWith(
+            //       fontSize: responsive.sp(14),
+            //       color: signUpViewModel.message.contains("success")
+            //           ? Colors.green
+            //           : Colors.red,
+            //     ),
+            //   ),
           ],
         ),
       ),

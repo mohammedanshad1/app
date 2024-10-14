@@ -1,0 +1,68 @@
+import 'package:app/constants/apptypography.dart';
+import 'package:app/utils/responsive.dart';
+import 'package:app/viewmodel/login_viewmodel.dart';
+import 'package:app/widgets/custom_snackbar.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class LoginView extends StatelessWidget {
+  final TextEditingController _mobileController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final responsive = context.responsive;
+
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: responsive.wp(10)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Login', style: AppTypography.bold.copyWith(fontSize: responsive.sp(24))),
+            SizedBox(height: responsive.hp(5)),
+            TextField(
+              controller: _mobileController,
+              decoration: InputDecoration(labelText: 'Mobile Number'),
+              keyboardType: TextInputType.phone,
+              style: AppTypography.regular,
+            ),
+            SizedBox(height: responsive.hp(2)),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(labelText: 'Password'),
+              obscureText: true,
+              style: AppTypography.regular,
+            ),
+            SizedBox(height: responsive.hp(4)),
+            Consumer<LoginViewModel>(
+              builder: (context, loginViewModel, child) {
+                return ElevatedButton(
+                  onPressed: loginViewModel.isLoading
+                      ? null
+                      : () {
+                          String userMobile = _mobileController.text.trim();
+                          String userPassword = _passwordController.text.trim();
+                          if (userMobile.isNotEmpty && userPassword.isNotEmpty) {
+                            loginViewModel.login(context, userMobile, userPassword);
+                          } else {
+                            CustomSnackBar.show(
+                              context,
+                              message: "Please fill in all fields",
+                              backgroundColor: Colors.orange,
+                              icon: Icons.warning,
+                            );
+                          }
+                        },
+                  child: loginViewModel.isLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : Text('Login', style: AppTypography.medium.copyWith(fontSize: responsive.sp(16))),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
