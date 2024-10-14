@@ -19,6 +19,7 @@ class SignUpView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Register",
           style: AppTypography.bold.copyWith(fontSize: responsive.sp(18)),
@@ -26,101 +27,102 @@ class SignUpView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: responsive.hp(2)),
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(
-                labelText: 'Name',
-                labelStyle: AppTypography.regular.copyWith(
-                  fontSize: responsive.sp(14),
-                ),
-                prefixIcon: Icon(Icons.person),
-              ),
-            ),
-            SizedBox(height: responsive.hp(2)),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                labelStyle: AppTypography.regular.copyWith(
-                  fontSize: responsive.sp(14),
-                ),
-                prefixIcon: Icon(Icons.email),
-              ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            SizedBox(height: responsive.hp(2)),
-            TextField(
-              controller: mobileController,
-              decoration: InputDecoration(
-                labelText: 'Mobile',
-                labelStyle: AppTypography.regular.copyWith(
-                  fontSize: responsive.sp(14),
-                ),
-                prefixIcon: Icon(Icons.phone),
-              ),
-              keyboardType: TextInputType.phone,
-            ),
-            SizedBox(height: responsive.hp(2)),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                labelStyle: AppTypography.regular.copyWith(
-                  fontSize: responsive.sp(14),
-                ),
-                prefixIcon: Icon(Icons.lock),
-              ),
-              obscureText: true,
-            ),
-            SizedBox(height: responsive.hp(4)),
-            signUpViewModel.isLoading
-                ? Center(child: CircularProgressIndicator())
-                : CustomButton(
-                    buttonName: "Register",
-                    onTap: () {
-                      signUpViewModel.registerUser(
-                        context,
-                        nameController.text,
-                        emailController.text,
-                        mobileController.text,
-                        passwordController.text,
-                      );
-                    },
-                    buttonColor: Colors.blue,
-                    height: responsive.hp(6),
-                    width: double.infinity,
-                  ),
-            SizedBox(height: responsive.hp(2)),
-            CustomButton(
-              buttonName: "Login",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
-                );
-              },
-              buttonColor: Colors.grey,
-              height: responsive.hp(6),
-              width: double.infinity,
-            ),
-            SizedBox(height: responsive.hp(3)),
-            if (signUpViewModel.message.isNotEmpty)
-              Center(
-                child: Text(
-                  signUpViewModel.message,
-                  style: AppTypography.regular.copyWith(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: responsive.hp(2)),
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  labelStyle: AppTypography.regular.copyWith(
                     fontSize: responsive.sp(14),
-                    color: signUpViewModel.message.contains("success")
-                        ? Colors.green
-                        : Colors.red,
                   ),
+                  prefixIcon: Icon(Icons.person),
                 ),
               ),
-          ],
+              SizedBox(height: responsive.hp(2)),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: AppTypography.regular.copyWith(
+                    fontSize: responsive.sp(14),
+                  ),
+                  prefixIcon: Icon(Icons.email),
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              SizedBox(height: responsive.hp(2)),
+              TextField(
+                controller: mobileController,
+                decoration: InputDecoration(
+                  labelText: 'Mobile',
+                  labelStyle: AppTypography.regular.copyWith(
+                    fontSize: responsive.sp(14),
+                  ),
+                  prefixIcon: Icon(Icons.phone),
+                ),
+                keyboardType: TextInputType.phone,
+              ),
+              SizedBox(height: responsive.hp(2)),
+              TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: AppTypography.regular.copyWith(
+                    fontSize: responsive.sp(14),
+                  ),
+                  prefixIcon: Icon(Icons.lock),
+                ),
+                obscureText: true,
+              ),
+              SizedBox(height: responsive.hp(4)),
+              signUpViewModel.isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : CustomButton(
+                      buttonName: "Register",
+                      onTap: () {
+                        signUpViewModel.registerUser(
+                          context,
+                          nameController.text,
+                          emailController.text,
+                          mobileController.text,
+                          passwordController.text,
+                        );
+                      },
+                      buttonColor: Colors.blue,
+                      height: responsive.hp(6),
+                      width: double.infinity,
+                    ),
+              SizedBox(height: responsive.hp(2)),
+              CustomButton(
+                buttonName: "Login",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginView()),
+                  );
+                },
+                buttonColor: Colors.grey,
+                height: responsive.hp(6),
+                width: double.infinity,
+              ),
+              SizedBox(height: responsive.hp(3)),
+              if (signUpViewModel.message.isNotEmpty)
+                Center(
+                  child: Text(
+                    signUpViewModel.message,
+                    style: AppTypography.regular.copyWith(
+                      fontSize: responsive.sp(14),
+                      color: signUpViewModel.message.contains("success")
+                          ? Colors.green
+                          : Colors.red,
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
